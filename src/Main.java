@@ -2,44 +2,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Napiši program koji od korisnika traži unos niza brojeva i sprema ih u List-u.
-// Pronađi najmanji i najveći broj, zamijeni ih međusobno i ispiši novu List-u.
+// 2. Zadatak. Od korisnika trazite unos 10 brojeva te u listi pronadite koji broj se najvise puta ponavlja.
+// Za rezultat ispisite broj koji se najvise puta ponavljao u listi te koliko se puta pojavio u listi.
+// Treba uzeti u obriz i kada su svi brojevi razliciti.
 public class Main {
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         List<Integer> brojevi = new ArrayList<>();
 
-        System.out.print("Unesite veličinu liste: ");
-        int velicinaListe = scanner.nextInt();
-
-        System.out.println("Unesite " + velicinaListe + " brojeva:");
-
-        for (int i = 0; i < velicinaListe; i++) {
+        System.out.println("Unesite 10 brojeva:");
+        for (int i = 0; i < 10; i++) {
             brojevi.add(scanner.nextInt());
         }
+        
+        int najcesciBroj = brojevi.get(0);
+        int maxPonavljanja = 1;
 
-        int min = brojevi.get(0);
-        int max = brojevi.get(0);
+        for (int i = 0; i < brojevi.size(); i++) {
+            int trenutniBroj = brojevi.get(i);
+            int brojPonavljanja = 0;
 
-        for (int i = 1; i < brojevi.size(); i++) {
-            if (brojevi.get(i) < min) {
-                min = brojevi.get(i);
+            for (int j = 0; j < brojevi.size(); j++) {
+                if (brojevi.get(j) == trenutniBroj) {
+                    brojPonavljanja++;
+                }
             }
-            if (brojevi.get(i) > max) {
-                max = brojevi.get(i);
+
+            if (brojPonavljanja >= maxPonavljanja) {
+                maxPonavljanja = brojPonavljanja;
+                najcesciBroj = trenutniBroj;
             }
         }
 
-        Integer indexMinBroja = brojevi.indexOf(min);
-        Integer indexMaxBroja = brojevi.indexOf(max);
-
-        brojevi.set(indexMinBroja, max);
-        brojevi.set(indexMaxBroja, min);
-
-        System.out.println("Nova lista nakon zamjene najmanjeg i najvećeg broja:");
-        for (int broj : brojevi) {
-            System.out.print(broj + " ");
+        if (maxPonavljanja==1){
+            System.out.println("Svi brojevi su razliciti.");
+        }else {
+            System.out.println("Broj koji se najviše puta ponavljao: " + najcesciBroj);
+            System.out.println("Ponavlja se " + maxPonavljanja + " puta.");
         }
     }
 }
