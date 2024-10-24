@@ -5,19 +5,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-            Scanner scanner = new Scanner(System.in);
+            List<Integer> listaBrojeva = new ArrayList<>();
 
-            System.out.println("Unesite prvi broj: ");
-            int prviBroj = scanner.nextInt();
-            ispisiVrijednostElementa(prviBroj);
+            for (int i = 1; i < 2; i++){
+                listaBrojeva.add(i);
+            }
 
-            System.out.println("Unesite drugi broj: ");
-            int drugiBroj = scanner.nextInt();
-            ispisiVrijednostElementa(drugiBroj);
+            postojiLiParanBroj(listaBrojeva);
 
-            Integer rezultatOduzimanja = oduzmiBrojeve(prviBroj, drugiBroj);
-
-            System.out.println("Rezultat je: " + rezultatOduzimanja);
         }
 
         public static void ispisiVrijednostElementa(Integer element){
@@ -25,8 +20,17 @@ public class Main {
             System.out.println("Vrijednost je: " + element);
         }
 
-        public static Integer oduzmiBrojeve(Integer element1, Integer element2){
-            Integer rezultat = element1 - element2;
-            return rezultat;
+        public static void postojiLiParanBroj(List<Integer> lista){
+
+            for (Integer broj : lista) {
+                if (broj % 2 == 0){
+                    System.out.println("Paran!");
+                    return;
+                }
+            }
+
+            System.out.println("Neparan!");
+
         }
+
 }
