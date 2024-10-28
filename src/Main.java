@@ -1,36 +1,31 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
 
-            List<Integer> listaBrojeva = new ArrayList<>();
+        String nekiString = "Ovo je testni primjerak stringa 1.2";
+        Integer brojacSlova = 0;
 
-            for (int i = 1; i < 2; i++){
-                listaBrojeva.add(i);
+        for (int i= 0; i < nekiString.length(); i ++){
+            char character = nekiString.charAt(i);
+            boolean daLiJeSlovo =  Character.isLetter(character);
+            boolean daLiJeBroj =  Character.isDigit(character);
+            String stringCharacter = String.valueOf(character);
+
+            if (stringCharacter.equals(" ")){
+                continue;
             }
 
-            postojiLiParanBroj(listaBrojeva);
-
-        }
-
-        public static void ispisiVrijednostElementa(Integer element){
-            // Integer element;
-            System.out.println("Vrijednost je: " + element);
-        }
-
-        public static void postojiLiParanBroj(List<Integer> lista){
-
-            for (Integer broj : lista) {
-                if (broj % 2 == 0){
-                    System.out.println("Paran!");
-                    return;
-                }
+            if (daLiJeSlovo==true){
+                System.out.println(character + " Slovo");
+                brojacSlova++;
+            } else if (daLiJeBroj==true) {
+                System.out.println(character + " Broj");
+            } else {
+                System.out.println(character + " Znak");
             }
-
-            System.out.println("Neparan!");
-
         }
 
+        System.out.println(brojacSlova);
+    }
 }

@@ -1,0 +1,9 @@
+
+0
+java:S1220""Move this file to a named package.
+E	java:S106"+Replace this use of System.out by a logger.(ï´˜úÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(åØ¥öøÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(å¤ßÙşÿÿÿÿ
+B
+java:S1125%"'Remove the unnecessary boolean literal.(¸£áèúÿÿÿÿ
+@	java:S106&"+Replace this use of System.out by a logger.(ºŸŸš
