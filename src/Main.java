@@ -1,23 +1,33 @@
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        BigDecimal prviBroj = BigDecimal.valueOf(10);
-        BigDecimal drugiBroj = BigDecimal.valueOf(6);
-        BigDecimal treciBroj = BigDecimal.valueOf(8);
+        BigDecimal test = BigDecimal.valueOf(674);
+        System.out.println("Upišite za koliko proizvoda želite izračunati popust: ");
+        int brojObjekata = scanner.nextInt();
 
-        BigDecimal provjera = prviBroj.add(drugiBroj).multiply(treciBroj);
-        BigDecimal zbroj = provjera.add(drugiBroj); // zbraja prvi s drugim brojem
-        BigDecimal razlika = provjera.subtract(drugiBroj); // oduzima se drugi broj od prvog
-        BigDecimal umnozak = provjera.multiply(drugiBroj); // mnozenje prvog broja s drugim
-        BigDecimal kolicnik = provjera.divide(drugiBroj, 8, RoundingMode.HALF_UP); // dijeljenje prvog broja s drugim
+        for (int i = 0; i < brojObjekata; i++) {
+            izracunajPopust();
+        }
+    }
 
-        System.out.println("Zbroj: " + zbroj);
-        System.out.println("Razlika: " + razlika);
-        System.out.println("Umnozak: " + umnozak);
-        System.out.println("Kolicnik: " + kolicnik);
-        System.out.println("Provjera: " + provjera);
+    public static void izracunajPopust() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Upišite naziv proizvoda");
+        String nazivProizvoda = scanner.nextLine();
+
+        System.out.println("Upišite cijenu proizvoda");
+        BigDecimal cijenaProizvoda = scanner.nextBigDecimal();
+
+        System.out.println("Upišite popust proizvoda");
+        BigDecimal popustProizvoda = scanner.nextBigDecimal();
+
+        Proizvod proizvod = new Proizvod(nazivProizvoda, cijenaProizvoda);
+
+        proizvod.postaviPopust(popustProizvoda);
+        System.out.println("Cijena proizvoda nakon popusta je " + proizvod.izracunajCijenu());
     }
 }
