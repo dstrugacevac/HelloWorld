@@ -1,24 +1,23 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Main {
     public static void main(String[] args) {
 
-        Pas pasRex = new Pas("Rex", "Njemacki ovcar", 10);
-        Pas pasOskar = new Pas("Oskar", "Labrador", 5);
+        BigDecimal prviBroj = BigDecimal.valueOf(10);
+        BigDecimal drugiBroj = BigDecimal.valueOf(6);
+        BigDecimal treciBroj = BigDecimal.valueOf(8);
 
-        String ime1 = pasRex.dohvatiIme();
-        String pasmina1 = pasRex.dohvatiPasminu();
-        String goidna1 = pasRex.dohvatiGodinuUStringu();
+        BigDecimal provjera = prviBroj.add(drugiBroj).multiply(treciBroj);
+        BigDecimal zbroj = provjera.add(drugiBroj); // zbraja prvi s drugim brojem
+        BigDecimal razlika = provjera.subtract(drugiBroj); // oduzima se drugi broj od prvog
+        BigDecimal umnozak = provjera.multiply(drugiBroj); // mnozenje prvog broja s drugim
+        BigDecimal kolicnik = provjera.divide(drugiBroj, 8, RoundingMode.HALF_UP); // dijeljenje prvog broja s drugim
 
-        String ime2 = pasOskar.dohvatiIme();
-        String pasmina2 = pasOskar.dohvatiPasminu();
-        Integer goidna2 = pasOskar.dohvatiGodinu();
-
-        Integer staraGodina = pasOskar.dohvatiGodinu();
-        
-        pasOskar.promjeniGodinu(7);
-
-        Integer novaGodina = pasOskar.dohvatiGodinu();
-
-        System.out.println(pasRex.dohvatiIme());
-        System.out.println(pasOskar.dohvatiIme());
+        System.out.println("Zbroj: " + zbroj);
+        System.out.println("Razlika: " + razlika);
+        System.out.println("Umnozak: " + umnozak);
+        System.out.println("Kolicnik: " + kolicnik);
+        System.out.println("Provjera: " + provjera);
     }
 }

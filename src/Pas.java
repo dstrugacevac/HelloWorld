@@ -58,4 +58,8 @@ public class Pas {
     public void promjeniGodinu(Integer novaVrijednostGdoine) {
         this.godina = novaVrijednostGdoine;
     }
+
+    public void promjeniIme(String ime) {
+        this.ime = ime;
+    }
 }
