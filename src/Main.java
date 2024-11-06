@@ -1,33 +1,94 @@
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        List<Student> Studenti = new ArrayList<>();
+        Studenti.add(unosStudenta());
+        int odabir;
+        do {
+            System.out.println("Odaberitie:");
+            System.out.println("1 za unos jos studenata");
+            System.out.println("2 za ispis studenta");
+            System.out.println("3 za ispis najboljeg studenta");
+            System.out.println("4 za ispis najlošijeg studenta");
+            System.out.println("5 za prosjek ocjana svih studenata");
+            System.out.println("6 za izlaz");
+            odabir = scanner.nextInt();
+            switch (odabir) {
+                case 1:
+                    Studenti.add(unosStudenta());
+                    break;
+                case 2:
+                    ispisStudenata(Studenti);
+                    break;
+                case 3:
+                    najboljiStudent(Studenti);
+                    break;
+                case 4:
+                    najgoriStudent(Studenti);
+                    break;
+                case 5:
+                    prosjekStudenata(Studenti);
+                    break;
+            }
 
-        BigDecimal test = BigDecimal.valueOf(674);
-        System.out.println("Upišite za koliko proizvoda želite izračunati popust: ");
-        int brojObjekata = scanner.nextInt();
-
-        for (int i = 0; i < brojObjekata; i++) {
-            izracunajPopust();
-        }
+        } while (odabir != 6);
     }
 
-    public static void izracunajPopust() {
+    private static Student unosStudenta() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Upišite naziv proizvoda");
-        String nazivProizvoda = scanner.nextLine();
 
-        System.out.println("Upišite cijenu proizvoda");
-        BigDecimal cijenaProizvoda = scanner.nextBigDecimal();
+        System.out.println("Unesite ime studenta:");
+        String ime = scanner.nextLine();
+        System.out.println("Unesite prezime studenta:");
+        String prezime = scanner.nextLine();
+        System.out.println("Unesite broj indeksa studneta:");
+        String brojIndeksa = scanner.nextLine();
+        System.out.println("Unesite prosjek ocjana studenta");
+        double prosjekOcjena = scanner.nextDouble();
 
-        System.out.println("Upišite popust proizvoda");
-        BigDecimal popustProizvoda = scanner.nextBigDecimal();
+        return new Student(ime, prezime, brojIndeksa, prosjekOcjena);
+    }
 
-        Proizvod proizvod = new Proizvod(nazivProizvoda, cijenaProizvoda);
+    private static void ispisStudenata(List<Student> studenti) {
+        for (Student student : studenti) {
+            student.ispisiSveVrijednosti();
+        }
+        System.out.println(" ");
+    }
 
-        proizvod.postaviPopust(popustProizvoda);
-        System.out.println("Cijena proizvoda nakon popusta je " + proizvod.izracunajCijenu());
+    private static void najboljiStudent(List<Student> studenti) {
+        Student najbolji = studenti.get(0);
+        for (int i = 1; i < studenti.size(); i++) {
+            if (najbolji.getProsjekOcjena() < studenti.get(i).getProsjekOcjena()) {
+                najbolji = studenti.get(i);
+            }
+        }
+        System.out.println("Student sa najvišim prosjekom ocjena je :");
+        najbolji.ispisiSveVrijednosti();
+
+    }
+
+    private static void najgoriStudent(List<Student> studenti) {
+        Student najgori = studenti.get(0);
+        for (int i = 1; i < studenti.size(); i++) {
+            if (najgori.getProsjekOcjena() > studenti.get(i).getProsjekOcjena()) {
+                najgori = studenti.get(i);
+            }
+        }
+        System.out.println("Student sa najnižim prosjekom ocjena je :");
+        najgori.ispisiSveVrijednosti();
+    }
+
+    private static void prosjekStudenata(List<Student> studenti) {
+        double prosjekStudenata = 0.0;
+        for (Student student : studenti) {
+            prosjekStudenata += student.getProsjekOcjena();
+        }
+        prosjekStudenata = prosjekStudenata / studenti.size();
+        System.out.printf("Prosjek svih studenta je: %.2f \n", prosjekStudenata);
     }
 }

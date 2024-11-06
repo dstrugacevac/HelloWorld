@@ -1,7 +1,7 @@
 public class Pas {
 
     // varijabla u koju se sprema vrijednost imena svakog psa
-    private String ime;
+    protected String ime;
 
     // varijabla u koju se sprema vrijednost pasmine svakog psa
     private String pasmina;
