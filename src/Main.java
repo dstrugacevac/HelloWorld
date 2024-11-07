@@ -1,15 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        List<Oblik> razniOblici = new ArrayList<>();
 
-        Zaposlenik zaposlenik = new Zaposlenik("Petar", "Peric", "Backend Developer", 3, "Algebra");
-        System.out.println("Zaposlenik ime: " + zaposlenik.getIme());
-        System.out.println("Zaposlenik godina iskustva: " + zaposlenik.getGodineIskustva());
-        zaposlenik.testnaFunkcija();
+        Oblik pravokutnik = new Pravokutnik(3, 2);
+        double povrsina = pravokutnik.izracunajPovrsinu();
+        razniOblici.add(pravokutnik);
 
-        Voditelj voditelj = new Voditelj("Ime voditelja", "Maric", "Java developer", 5, "Algebra", "IT");
-        System.out.println("Voditelj ime: " + voditelj.getIme());
-        System.out.println("Voditelj godina iskustva: " + voditelj.getGodineIskustva());
-        System.out.println("Voditelj odjjel: " + voditelj.getOdjel());
-        voditelj.testnaFunkcija();
+        Oblik krug = new Krug(5.7);
+        double povrsinaKruga = krug.izracunajPovrsinu();
+        razniOblici.add(krug);
+
+        for (int i = 0; i < razniOblici.size(); i++) {
+            razniOblici.get(i).ispisiPodatke();
+        }
     }
 }
