@@ -1,27 +1,33 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.print("Unesite broj: ");
-        int broj;
+        Scanner scanner = new Scanner(System.in);
+        Integer unos = null;
+        long rezultat = 0;
 
-        boolean ispravanUnos = false;
+        System.out.println("Unesite broj");
+        try {
+            unos = scanner.nextInt();
 
-        do {
-            try {
-                Scanner scanner = new Scanner(System.in);
-                broj = scanner.nextInt();
-                System.out.println("Unijeli ste: " + broj);
-                ispravanUnos = true;
-            } catch (Exception e) {
-                System.out.println("Greška: Unos mora biti cijeli broj.");
-                broj = 1;
-            }
+            rezultat = izracunajFaktorijel(unos);
+            System.out.println("Faktorijel od broja " + unos + " iznosi " + rezultat);
+        } catch (InputMismatchException e) {
+            System.out.println("Greška: Molimo unesite cijeli broj.");
+        } catch (Exception e) {
+            System.out.println("Greška: " + e.getMessage());
+        }
+    }
 
-        } while (!ispravanUnos);
-
-        Integer kvadrat = broj * broj;
-
-        System.out.println("Kvardat je:" + kvadrat);
+    public static long izracunajFaktorijel(int broj) throws Exception {
+        if (broj < 0) {
+            throw new Exception("Faktorijel nije definiran za negativne brojeve.");
+        }
+        long rezultat = 1;
+        for (int i = 1; i <= broj; i++) {
+            rezultat *= i;
+        }
+        return rezultat;
     }
 }
