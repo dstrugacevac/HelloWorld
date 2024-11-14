@@ -1,33 +1,26 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Integer unos = null;
-        long rezultat = 0;
+    public static void main(String[] args) throws IOException {
+        File inputFile = new File("myfile.txt");
+        File outputFile = new File("outagain.txt");
+        FileReader in = new FileReader(inputFile);
+        FileWriter out = new FileWriter(outputFile);
+        int i = 0;
 
-        System.out.println("Unesite broj");
-        try {
-            unos = scanner.nextInt();
+        int c;
+        while ((c = in.read()) != -1) {
+            out.write(c);
+            i++;
+            System.out.println("ASCII znakova u fileu je: " + c);
+        }
 
-            rezultat = izracunajFaktorijel(unos);
-            System.out.println("Faktorijel od broja " + unos + " iznosi " + rezultat);
-        } catch (InputMismatchException e) {
-            System.out.println("Greška: Molimo unesite cijeli broj.");
-        } catch (Exception e) {
-            System.out.println("Greška: " + e.getMessage());
-        }
-    }
 
-    public static long izracunajFaktorijel(int broj) throws Exception {
-        if (broj < 0) {
-            throw new Exception("Faktorijel nije definiran za negativne brojeve.");
-        }
-        long rezultat = 1;
-        for (int i = 1; i <= broj; i++) {
-            rezultat *= i;
-        }
-        return rezultat;
+        System.out.println("Broj znakova u fileu je: " + i);
+        in.close();
+        out.close();
     }
 }
