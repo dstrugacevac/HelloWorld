@@ -56,4 +56,14 @@ public class Razred {
     public void setImeRazrednika(String imeRazrednika) {
         this.imeRazrednika = imeRazrednika;
     }
+
+    public void pronadiNajboljegUcenika() {
+        Ucenik najbolji = ucenici.get(0);
+        for (int i = 1; i < ucenici.size(); i++)
+            if (ucenici.get(i).getOcjena() > najbolji.getOcjena()) {
+                najbolji = ucenici.get(i);
+            }
+        System.out.println("Najbolji ucenik je :");
+        najbolji.ispisiInfo();
+    }
 }

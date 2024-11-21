@@ -2,10 +2,12 @@ public class Ucenik {
 
     private String ime;
     private String prezime;
+    private final Integer ocjena;
 
-    public Ucenik(String ime, String prezime) {
+    public Ucenik(String ime, String prezime, Integer ocjena) {
         this.ime = ime;
         this.prezime = prezime;
+        this.ocjena = ocjena;
     }
 
     public String getIme() {
@@ -31,5 +33,9 @@ public class Ucenik {
 
     public void ispisiInfo() {
         System.out.println("Zovem se: " + this.ime + " " + this.prezime);
+    }
+
+    public Integer getOcjena() {
+        return ocjena;
     }
 }
