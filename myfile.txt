@@ -1,9 +1,33 @@
-Test
-Test
-Test
-Test
-Test
-Test
-Test
-Test
-Test
+Napravite program za upravljanje sustavom knjižnice. Program treba sadržavati:
+Klase za osobe – Program treba imati klase koje predstavljaju osobe u sustavu, poput člana knjižnice, s pripadajućim podacima (ime, prezime, članski broj).
+Sučelje za rad s knjigama – Treba definirati sučelje koje će omogućiti rad s knjigama (npr. dodavanje i vraćanje knjiga).
+
+Klasa knjižnice – Klasa koja sadrži:
+listu svih članova knjižnice,
+listu svih knjiga dostupnih u knjižnici,
+metode za upravljanje članovima i knjigama.
+Pisanje u datoteku – Podaci o članovima, njihovim posuđenim knjigama i stanju knjiga u knjižnici moraju se zapisivati u datoteku na kraju programa.
+
+Detalji zadatka:
+Osnovni podaci o članovima knjižnice:
+Omogućiti unos korisnika (ime, prezime, članski broj) putem konzole.
+
+Rad s knjigama:
+Klasa knjižnice treba sadržavati listu svih knjiga dostupnih za posudbu.
+Omogućiti svakom članu knjižnice da posuđuje i vraća knjige.
+
+Kada član posudi knjigu:
+Knjiga se treba ukloniti iz liste knjiga u knjižnici.
+Knjiga se treba dodati u listu knjiga posuđenih od strane člana.
+
+Kada član vrati knjigu:
+Knjiga se uklanja iz liste posuđenih knjiga kod člana.
+Knjiga se ponovno dodaje u listu knjiga knjižnice.
+
+
+3. Rad s datotekom: Na kraju programa ispisati informacije o tvrtci (informacije o clanovima i knjigama takoder) unutar datoteke tvrtka.txt.
+Istu stvar napraviti i za clanove, ispisati podatke o clanovima (ime, prezime, knjige....) u datoteku clanovi.txt
+
+4. Korištenje nasljeđivanja i sučelja:
+Koristiti nasljeđivanje za kreiranje hijerarhije klasa.
+Implementirati sučelje koje definira metode za dodavanje i vraćanje knjiga.
