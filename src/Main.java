@@ -1,33 +1,35 @@
-import java.io.IOException;
+import java.util.HashSet;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
-        EvidecnijaVozila evidencija = new EvidecnijaVozila();
-        try {
-            Automobil auto1 = new Automobil("Porche", "ZG-1234-AA", 2015, 3);
-            evidencija.dodadjVoziloUListu(auto1);
+        // Ispisite element Šljiva ako postoji, ako ne postoji ispisite da šljiva ne postoji
+        HashSet<String> hashSet = new HashSet<>();
 
-            Automobil auto2 = new Automobil("Mercedes", "KA-4321-AB", 2010, 5);
-            evidencija.dodadjVoziloUListu(auto2);
+        hashSet.add("Kruška");
+        hashSet.add("Jabuka");
+        hashSet.add("Jagoda");
+        hashSet.add("Šljiva");
 
-            Motocikl moto1 = new Motocikl("Honda", "ST-5678-BB", 2012, "Sportski");
-            evidencija.dodadjVoziloUListu(moto1);
-
-            Motocikl moto2 = new Motocikl("Harley Davidson", "CK-123-GM", 2018, "Chopper");
-            evidencija.dodadjVoziloUListu(moto2);
-
-            Motocikl moto3 = new Motocikl("Vespa", "SB-222-MG", 2000, "scooter");
-            evidencija.dodadjVoziloUListu(moto3);
-
-        } catch (NeispravniPodaciException e) {
-            System.out.println(e.getMessage());
+        for (String elementSeta : hashSet) {
+            System.out.println("HashSet: " + elementSeta);
         }
 
-        evidencija.prikaziSvaVozila();
-        evidencija.spremiPodatkeUDatoteku("vozila.txt");
-        evidencija.ucitajPodatkeIzDatoteke("vozila.txt");
+        hashSet.remove("Kruška");
+
+        System.out.println("-------------------NAKON BRISANJA-----------------------");
+
+        for (String elementSeta : hashSet) {
+            System.out.println("HashSet: " + elementSeta);
+        }
+
+        if (hashSet.contains("Šljiva")) {
+            System.out.println("Šljiva");
+        } else {
+            System.out.println("Šljiva ne postoji.");
+        }
+
 
     }
 
