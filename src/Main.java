@@ -1,36 +1,38 @@
-import java.util.HashSet;
+import java.util.Comparator;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
 
+        TreeSet<String> treeSetAsc = new TreeSet<>();
 
-        // Ispisite element Šljiva ako postoji, ako ne postoji ispisite da šljiva ne postoji
-        HashSet<String> hashSet = new HashSet<>();
+        treeSetAsc.add("Jabuka");
+        treeSetAsc.add("Banana");
+        treeSetAsc.add("Trešnja");
+        treeSetAsc.add("Jagoda");
+        treeSetAsc.add("Marelica");
+        treeSetAsc.add("Višnja");
+        treeSetAsc.add("Kiwi");
 
-        hashSet.add("Kruška");
-        hashSet.add("Jabuka");
-        hashSet.add("Jagoda");
-        hashSet.add("Šljiva");
+        System.out.println("--------------------------------");
+        System.out.println("Eelementi u TreeSet-u ASC su: " + treeSetAsc);
+        System.out.println("--------------------------------");
 
-        for (String elementSeta : hashSet) {
-            System.out.println("HashSet: " + elementSeta);
-        }
+        treeSetAsc.remove("Trešnja");
 
-        hashSet.remove("Kruška");
+        System.out.println("--------------------------------");
+        System.out.println("Eelementi u TreeSet-u ASC su: " + treeSetAsc);
+        System.out.println("--------------------------------");
 
-        System.out.println("-------------------NAKON BRISANJA-----------------------");
+        System.out.println("Prvi element u TreeSet-u je: " + treeSetAsc.first());
+        System.out.println("Zadnji element u TreeSet-u je: " + treeSetAsc.last());
 
-        for (String elementSeta : hashSet) {
-            System.out.println("HashSet: " + elementSeta);
-        }
+        TreeSet<String> treeSetDesc = new TreeSet<>(Comparator.reverseOrder());
+        treeSetDesc.addAll(treeSetAsc);
 
-        if (hashSet.contains("Šljiva")) {
-            System.out.println("Šljiva");
-        } else {
-            System.out.println("Šljiva ne postoji.");
-        }
-
-
+        System.out.println("--------------------------------");
+        System.out.println("Eelementi u TreeSet-u DESC su: " + treeSetDesc);
+        System.out.println("--------------------------------");
     }
 
 }
