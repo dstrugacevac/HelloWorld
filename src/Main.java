@@ -1,135 +1,57 @@
 import database.DatabaseService;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 
 public class Main {
-    public static void main(String[] args) {
-        selectExample();
-        deleteExample();
-        selectExample();
-    }
 
-    private static void deleteExample() {
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws SQLException {
         Connection connection = DatabaseService.createConnection();
 
-        try {
-            // Izvršavanje SQL upita
-            String query = "DELETE FROM Drzava WHERE IDDrzava = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
+        pozivanjeProcedureZaBrisanjeDrzava(connection);
 
-            statement.setString(1, "9");
-
-            Integer result = statement.executeUpdate();
-
-            // Ispis rezultata
-            System.out.println("Rezultat je " + result);
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
+        connection.close();
     }
 
-    private static void updateExample() {
-        Connection connection = DatabaseService.createConnection();
+    public static void pozivanjeProcedureZaBrisanjeDrzava(Connection connection) throws SQLException {
+        String callProcedure = "{CALL ObrisiDrzaveSaIdVecimOd(?)}";
+        CallableStatement callableStatement = connection.prepareCall(callProcedure);
 
-        try {
-            // Izvršavanje SQL upita
-            String query = "UPDATE Drzava SET Naziv = ? WHERE IDDrzava = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
+        int minId = 1011;
+        callableStatement.setInt(1, minId);
 
-            statement.setString(1, "Portugal");
-            statement.setString(2, "9");
+        callableStatement.execute();
 
-            Integer result = statement.executeUpdate();
+        System.out.println("Drzave sa Id vecim ili jednakim od " + minId + " su obrisane.");
 
-            // Ispis rezultata
-            System.out.println("Rezultat je " + result);
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
+        callableStatement.close();
     }
 
 
-    private static void insertExample() {
-        Connection connection = DatabaseService.createConnection();
-
-        try {
-            // Izvršavanje SQL upita
-            String query = "INSERT INTO Drzava (Naziv) VALUES (?)";
-            PreparedStatement statement = connection.prepareStatement(query);
-
-            statement.setString(1, "Slovenija");
-
-            Integer result = statement.executeUpdate();
-
-            // Ispis rezultata
-
-            System.out.println("Rezultat je " + result);
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+    public static void unos10RandomDrzava(Connection connection) throws SQLException {
+        List<String> naziviDrzava = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            naziviDrzava.add("Drzava" + i);
         }
-    }
 
+        String query = "INSERT INTO Drzava (Naziv) VALUES (?)";
 
-    private static void selectExample() {
-        Connection connection = DatabaseService.createConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-        try {
-            // Izvršavanje SQL upita
-            String query = "SELECT * FROM Drzava ORDER BY Naziv";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            // Ispis rezultata
-            while (resultSet.next()) {
-                System.out.println("ID: " + resultSet.getInt("IDDrzava"));
-                System.out.println("Naziv: " + resultSet.getString("Naziv"));
-            }
-
-            // Zatvaranje resursa
-            resultSet.close();
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        for (String nazivDrzave : naziviDrzava) {
+            preparedStatement.setString(1, nazivDrzave);
+            preparedStatement.executeUpdate();
+            System.out.println("Dodana: " + nazivDrzave);
         }
-    }
 
+        preparedStatement.close();
+    }
 }

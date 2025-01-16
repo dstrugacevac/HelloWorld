@@ -12,16 +12,20 @@ public class DatabaseService {
         String user = "root";
         String password = "password";
 
+
+        Connection connection = null;
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
-
-            if (connection != null) {
-                System.out.println("Uspješno povezivanje s bazom!");
-            }
-
-            return connection;
+            connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
+            System.out.println("Dogodila se greska pri spajanju na bazu.");
             throw new RuntimeException(e);
         }
+
+        if (connection != null) {
+            System.out.println("Uspješno povezivanje s bazom!");
+        }
+
+        return connection;
+
     }
 }
