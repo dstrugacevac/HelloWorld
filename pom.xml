@@ -1,0 +1,29 @@
+<dependencies>
+    <!-- Hibernate Core -->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>6.2.6.Final</version> <!-- Zamijenite s najnovijom verzijom -->
+    </dependency>
+
+    <!-- HikariCP za bolji connection pool -->
+    <dependency>
+        <groupId>com.zaxxer</groupId>
+        <artifactId>HikariCP</artifactId>
+        <version>5.0.1</version>
+    </dependency>
+
+    <!-- MySQL ili SQL Server JDBC driver -->
+    <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>mssql-jdbc</artifactId>
+        <version>12.2.0.jre11</version> <!-- Verzija za Java 11+ -->
+    </dependency>
+
+    <dependency>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>3.1.0</version> <!-- Ili najnovija dostupna verzija -->
+    </dependency>
+
+</dependencies>
